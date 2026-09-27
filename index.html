@@ -1,0 +1,719 @@
+<!-- site: paulys-smash-tacos -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pauly's Smash Tacos | Backyard Smashburger Taco Cook-Ups</title>
+<meta name="description" content="Fresh smashburger tacos cooked on a flat-top grill right at your party. We bring the grill, the food, and the cook. Book your cook-up today.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0c0a09;
+    --black-2:#161311;
+    --orange:#ff5a1f;
+    --orange-2:#ff7b39;
+    --yellow:#ffc93c;
+    --cream:#fff4e2;
+    --gray:#b8ada3;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--black);
+    color:var(--cream);
+    font-family:'Poppins',sans-serif;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Bebas Neue',sans-serif;
+    letter-spacing:1px;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 20px;
+  }
+
+  /* ===== Sizzle background ===== */
+  .sizzle-bg{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    z-index:0;
+  }
+  .spark{
+    position:absolute;
+    bottom:-10px;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--yellow);
+    opacity:0.85;
+    filter:blur(0.3px);
+    animation:rise linear infinite;
+  }
+  @keyframes rise{
+    0%{transform:translateY(0) translateX(0) scale(1);opacity:0.9;}
+    80%{opacity:0.7;}
+    100%{transform:translateY(-420px) translateX(var(--dx,20px)) scale(0.3);opacity:0;}
+  }
+
+  /* ===== Header / Nav ===== */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(12,10,9,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:2px solid var(--orange);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 20px;
+    max-width:1100px;
+    margin:0 auto;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Bebas Neue',sans-serif;
+    font-size:1.5rem;
+    color:var(--yellow);
+  }
+  .brand .flame{
+    width:28px;
+    height:28px;
+  }
+  .nav-links{
+    display:none;
+    gap:24px;
+    font-weight:600;
+    font-size:0.95rem;
+  }
+  .nav-links a:hover{color:var(--orange-2);}
+  .nav-cta{
+    display:inline-block;
+    background:var(--orange);
+    color:var(--black);
+    font-weight:800;
+    padding:10px 16px;
+    border-radius:30px;
+    font-size:0.85rem;
+    white-space:nowrap;
+    box-shadow:0 4px 14px rgba(255,90,31,0.4);
+    transition:transform .15s ease, background .15s ease;
+  }
+  .nav-cta:hover{background:var(--orange-2);transform:translateY(-2px);}
+
+  @media(min-width:800px){
+    .nav-links{display:flex;}
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    padding:70px 0 90px;
+    text-align:center;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(255,90,31,0.25), transparent 60%),
+      linear-gradient(180deg, #0c0a09 0%, #17110d 100%);
+    overflow:hidden;
+  }
+  .hero-content{
+    position:relative;
+    z-index:2;
+  }
+  .kicker{
+    color:var(--yellow);
+    font-weight:700;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-size:0.8rem;
+    margin-bottom:14px;
+  }
+  .hero h1{
+    font-size:3rem;
+    line-height:0.95;
+    color:var(--cream);
+    text-shadow:0 0 30px rgba(255,90,31,0.4);
+  }
+  .hero h1 span{
+    color:var(--orange);
+    display:block;
+    font-size:1.1em;
+  }
+  .hero p.sub{
+    max-width:520px;
+    margin:20px auto 34px;
+    color:var(--gray);
+    font-size:1.05rem;
+  }
+  .hero-btns{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    align-items:center;
+  }
+  .btn-primary{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:linear-gradient(135deg, var(--orange), var(--yellow));
+    color:var(--black);
+    font-weight:800;
+    font-size:1.15rem;
+    padding:18px 34px;
+    border-radius:50px;
+    box-shadow:0 8px 26px rgba(255,90,31,0.45);
+    transition:transform .15s ease;
+    border:none;
+    cursor:pointer;
+  }
+  .btn-primary:hover{transform:translateY(-3px) scale(1.02);}
+  .btn-secondary{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:var(--yellow);
+    font-weight:600;
+    padding:10px 20px;
+    border:2px solid rgba(255,201,60,0.4);
+    border-radius:50px;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .btn-secondary:hover{border-color:var(--yellow); color:var(--yellow);}
+
+  .grill-line{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin-top:40px;
+    flex-wrap:wrap;
+    color:var(--gray);
+    font-size:0.85rem;
+  }
+  .grill-line span{
+    background:var(--black-2);
+    border:1px solid rgba(255,255,255,0.08);
+    padding:6px 14px;
+    border-radius:20px;
+  }
+
+  /* ===== Section generic ===== */
+  section{
+    padding:70px 0;
+    position:relative;
+  }
+  .section-head{
+    text-align:center;
+    margin-bottom:44px;
+  }
+  .section-head .kicker{margin-bottom:8px;}
+  .section-head h2{
+    font-size:2.4rem;
+    color:var(--cream);
+  }
+  .section-head h2 em{
+    font-style:normal;
+    color:var(--orange);
+  }
+  .section-head p{
+    color:var(--gray);
+    max-width:480px;
+    margin:12px auto 0;
+  }
+
+  /* ===== How it works ===== */
+  .steps{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:24px;
+  }
+  @media(min-width:760px){
+    .steps{grid-template-columns:repeat(3,1fr);}
+  }
+  .step-card{
+    background:var(--black-2);
+    border:1px solid rgba(255,255,255,0.06);
+    border-radius:18px;
+    padding:32px 24px;
+    text-align:center;
+    position:relative;
+    transition:transform .2s ease, border-color .2s ease;
+  }
+  .step-card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(255,90,31,0.5);
+  }
+  .step-num{
+    width:56px;
+    height:56px;
+    margin:0 auto 18px;
+    border-radius:50%;
+    background:linear-gradient(135deg, var(--orange), var(--yellow));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Bebas Neue',sans-serif;
+    font-size:1.6rem;
+    color:var(--black);
+  }
+  .step-card h3{
+    font-size:1.4rem;
+    color:var(--cream);
+    margin-bottom:10px;
+    letter-spacing:0.5px;
+  }
+  .step-card p{color:var(--gray); font-size:0.95rem;}
+
+  /* ===== Menu ===== */
+  .menu-card{
+    background:linear-gradient(160deg, var(--black-2), #1d1712);
+    border:1px solid rgba(255,201,60,0.25);
+    border-radius:22px;
+    padding:38px 28px;
+    max-width:620px;
+    margin:0 auto;
+    position:relative;
+    overflow:hidden;
+  }
+  .menu-card::before{
+    content:"";
+    position:absolute;
+    top:-60px;
+    right:-60px;
+    width:180px;
+    height:180px;
+    background:radial-gradient(circle, rgba(255,90,31,0.35), transparent 70%);
+  }
+  .menu-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:6px;
+    position:relative;
+    z-index:1;
+  }
+  .menu-title h3{
+    font-size:1.8rem;
+    color:var(--yellow);
+  }
+  .price-tag{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:2.2rem;
+    color:var(--orange);
+    white-space:nowrap;
+  }
+  .price-tag small{
+    display:block;
+    font-family:'Poppins',sans-serif;
+    font-size:0.7rem;
+    color:var(--gray);
+    text-transform:uppercase;
+    letter-spacing:1px;
+  }
+  .menu-desc{
+    color:var(--gray);
+    margin-bottom:20px;
+    position:relative;
+    z-index:1;
+  }
+  .menu-list{
+    list-style:none;
+    display:grid;
+    gap:10px;
+    margin-bottom:22px;
+    position:relative;
+    z-index:1;
+  }
+  .menu-list li{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    color:var(--cream);
+    font-size:0.95rem;
+  }
+  .menu-list li::before{
+    content:"🔥";
+    flex-shrink:0;
+  }
+  .menu-extra{
+    border-top:1px dashed rgba(255,255,255,0.15);
+    padding-top:18px;
+    display:grid;
+    gap:8px;
+    position:relative;
+    z-index:1;
+  }
+  .menu-extra .row{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    font-size:0.95rem;
+    color:var(--gray);
+  }
+  .menu-extra .row span:last-child{
+    color:var(--yellow);
+    font-weight:600;
+  }
+
+  /* ===== Included ===== */
+  .included-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+    max-width:640px;
+    margin:0 auto;
+  }
+  @media(min-width:640px){
+    .included-grid{grid-template-columns:repeat(4,1fr);}
+  }
+  .included-item{
+    background:var(--black-2);
+    border:1px solid rgba(255,255,255,0.06);
+    border-radius:16px;
+    padding:22px 14px;
+    text-align:center;
+  }
+  .included-item .icon{
+    font-size:1.8rem;
+    margin-bottom:10px;
+  }
+  .included-item p{
+    color:var(--cream);
+    font-size:0.9rem;
+    font-weight:600;
+  }
+
+  /* ===== Hours / Area ===== */
+  .info-section{
+    background:linear-gradient(180deg, #17110d, #0c0a09);
+  }
+  .info-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+  @media(min-width:700px){
+    .info-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  .info-card{
+    background:var(--black-2);
+    border:1px solid rgba(255,255,255,0.06);
+    border-radius:18px;
+    padding:30px;
+  }
+  .info-card h3{
+    color:var(--orange);
+    font-size:1.5rem;
+    margin-bottom:12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .info-card p{color:var(--gray);}
+  .info-card .placeholder{
+    color:var(--yellow);
+    font-style:italic;
+  }
+
+  /* ===== Final CTA ===== */
+  .cta-band{
+    text-align:center;
+    background:radial-gradient(ellipse at center, rgba(255,90,31,0.25), transparent 70%), var(--black);
+    padding:70px 0;
+  }
+  .cta-band h2{
+    font-size:2.2rem;
+    margin-bottom:14px;
+  }
+  .cta-band p{
+    color:var(--gray);
+    margin-bottom:30px;
+  }
+  .contact-row{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    align-items:center;
+  }
+  @media(min-width:600px){
+    .contact-row{flex-direction:row;justify-content:center;}
+  }
+
+  /* ===== Footer ===== */
+  footer{
+    background:#08070600;
+    border-top:2px solid var(--orange);
+    padding:36px 0 26px;
+    text-align:center;
+    color:var(--gray);
+    font-size:0.9rem;
+  }
+  footer .brand{
+    justify-content:center;
+    margin-bottom:14px;
+  }
+  .foot-links{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:16px;
+    font-weight:600;
+  }
+  .foot-links a:hover{color:var(--orange-2);}
+  footer .fine{
+    font-size:0.78rem;
+    opacity:0.6;
+  }
+
+  /* Sticky mobile call bar */
+  .sticky-call{
+    position:fixed;
+    left:0;right:0;bottom:0;
+    z-index:60;
+    background:var(--black);
+    border-top:2px solid var(--orange);
+    padding:10px 16px;
+    display:flex;
+    gap:10px;
+  }
+  .sticky-call a{
+    flex:1;
+    text-align:center;
+    padding:12px 10px;
+    border-radius:12px;
+    font-weight:800;
+    font-size:0.9rem;
+  }
+  .sticky-call .call{
+    background:linear-gradient(135deg, var(--orange), var(--yellow));
+    color:var(--black);
+  }
+  .sticky-call .text{
+    background:transparent;
+    border:2px solid var(--yellow);
+    color:var(--yellow);
+  }
+  @media(min-width:800px){
+    .sticky-call{display:none;}
+  }
+  body{padding-bottom:70px;}
+  @media(min-width:800px){body{padding-bottom:0;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <svg class="flame" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2c1 3-2 4-2 7a4 4 0 108 0c0-1-1-2-1-2 2 1 3 4 3 6a7 7 0 11-14 0c0-4 3-6 4-8 1-1 2-2 2-3z" fill="#ff5a1f"/>
+        <path d="M12 22a4 4 0 004-4c0-2-2-3-2-5-2 1-3 3-3 5a3 3 0 001 4z" fill="#ffc93c"/>
+      </svg>
+      Pauly's Smash Tacos
+    </div>
+    <nav class="nav-links">
+      <a href="#how">How It Works</a>
+      <a href="#menu">Menu</a>
+      <a href="#included">What's Included</a>
+      <a href="#info">Hours &amp; Area</a>
+    </nav>
+    <a class="nav-cta" href="tel:8103283498">📞 Book a Cook-Up</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="sizzle-bg" id="sizzleBg"></div>
+  <div class="wrap hero-content">
+    <div class="kicker">Backyard Flat-Top Taco Catering</div>
+    <h1>SMASHED FRESH.<span>RIGHT IN YOUR YARD.</span></h1>
+    <p class="sub">We bring the grill, the food, and the cook. Crispy-edge smashburger tacos, made to order, right at your party. You just eat.</p>
+    <div class="hero-btns">
+      <a href="tel:8103283498" class="btn-primary">🔥 Book a Cook-Up — Call (810) 328-3498</a>
+      <a href="sms:8103283498" class="btn-secondary">💬 Prefer to text? Tap here</a>
+    </div>
+    <div class="grill-line">
+      <span>Made to order</span>
+      <span>Crispy edges</span>
+      <span>Zero cleanup for you</span>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Easy As 1-2-3</div>
+      <h2>How It <em>Works</em></h2>
+      <p>No stress, no mess. Here's all you have to do.</p>
+    </div>
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Call or Text</h3>
+        <p>Reach out at (810) 328-3498 and tell us about your party.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Pick a Date</h3>
+        <p>We lock in a date and headcount for your cook-up.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>We Cook</h3>
+        <p>We roll up with the flat-top grill and smash fresh tacos right at your place.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">The Menu</div>
+      <h2>Smash Taco <em>Party</em></h2>
+      <p>One package. Simple pricing. Serious flavor.</p>
+    </div>
+    <div class="menu-card">
+      <div class="menu-title">
+        <h3>Smash Taco Party</h3>
+        <div class="price-tag">$15<small>per person</small></div>
+      </div>
+      <p class="menu-desc">3 smashburger tacos per person, cooked fresh on-site. 8 person minimum ($120).</p>
+      <ul class="menu-list">
+        <li>3 smashburger tacos per person</li>
+        <li>All food included</li>
+        <li>Flat-top grill brought to you</li>
+        <li>Cooked live, on the spot</li>
+        <li>Full cleanup — you don't lift a finger</li>
+      </ul>
+      <div class="menu-extra">
+        <div class="row"><span>Extra tacos</span><span>Call for price</span></div>
+        <div class="row"><span>Travel over 20 miles</span><span>Call for price</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="included">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">All Inclusive</div>
+      <h2>What's <em>Included</em></h2>
+    </div>
+    <div class="included-grid">
+      <div class="included-item">
+        <div class="icon">🌮</div>
+        <p>All Food</p>
+      </div>
+      <div class="included-item">
+        <div class="icon">🔥</div>
+        <p>Flat-Top Grill</p>
+      </div>
+      <div class="included-item">
+        <div class="icon">👨‍🍳</div>
+        <p>Cooking On-Site</p>
+      </div>
+      <div class="included-item">
+        <div class="icon">🧼</div>
+        <p>Full Cleanup</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="info" class="info-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Details</div>
+      <h2>Hours &amp; <em>Area</em></h2>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>🕒 Hours</h3>
+        <p>By booking only. Call or text to set a date — no set storefront hours.</p>
+      </div>
+      <div class="info-card">
+        <h3>📍 Area We Serve</h3>
+        <p><span class="placeholder">[TOWN NAME NEEDED]</span> and about 20 miles around. No storefront — we come to you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Ready to Smell That Sizzle?</h2>
+    <p>Call or text to book your Smash Taco Party today.</p>
+    <div class="contact-row">
+      <a href="tel:8103283498" class="btn-primary">📞 Call (810) 328-3498</a>
+      <a href="sms:8103283498" class="btn-secondary">💬 Text Us</a>
+      <a href="mailto:paulyservices@gmail.com" class="btn-secondary">✉️ Email Us</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">
+      <svg class="flame" viewBox="0 0 24 24" fill="none" width="24" height="24">
+        <path d="M12 2c1 3-2 4-2 7a4 4 0 108 0c0-1-1-2-1-2 2 1 3 4 3 6a7 7 0 11-14 0c0-4 3-6 4-8 1-1 2-2 2-3z" fill="#ff5a1f"/>
+        <path d="M12 22a4 4 0 004-4c0-2-2-3-2-5-2 1-3 3-3 5a3 3 0 001 4z" fill="#ffc93c"/>
+      </svg>
+      Pauly's Smash Tacos
+    </div>
+    <div class="foot-links">
+      <a href="tel:8103283498">(810) 328-3498</a>
+      <a href="mailto:paulyservices@gmail.com">paulyservices@gmail.com</a>
+      <a href="#menu">Menu</a>
+      <a href="#info">Hours &amp; Area</a>
+    </div>
+    <p class="fine">&copy; <span id="year"></span> Pauly's Smash Tacos. Fresh smashed tacos, cooked right at your party.</p>
+  </div>
+</footer>
+
+<div class="sticky-call">
+  <a href="tel:8103283498" class="call">📞 Call</a>
+  <a href="sms:8103283498" class="text">💬 Text</a>
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  (function(){
+    var container = document.getElementById('sizzleBg');
+    var count = 22;
+    for(var i=0;i<count;i++){
+      var s = document.createElement('div');
+      s.className = 'spark';
+      var left = Math.random()*100;
+      var duration = 3 + Math.random()*3;
+      var delay = Math.random()*4;
+      var dx = (Math.random()*60 - 30) + 'px';
+      var size = 3 + Math.random()*4;
+      s.style.left = left + '%';
+      s.style.width = size + 'px';
+      s.style.height = size + 'px';
+      s.style.setProperty('--dx', dx);
+      s.style.animationDuration = duration + 's';
+      s.style.animationDelay = delay + 's';
+      container.appendChild(s);
+    }
+  })();
+</script>
+
+</body>
+</html>
